@@ -1,0 +1,1 @@
+# camel-producer-template-poc
