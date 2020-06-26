@@ -1,4 +1,4 @@
-package com.camel.example;
+package com.camel.producer;
 
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
@@ -12,7 +12,7 @@ public class SimpleRoute extends RouteBuilder {
 
         from("direct:simpleRoute")
                 .routeId("simpleRoute")
-                .log(LoggingLevel.INFO, "${body}")
+                .log(LoggingLevel.INFO, "body >>>> ${body}")
                 .log(LoggingLevel.INFO, "Simple Route executed !!")
                 .to("mock:output")
                 ;

@@ -1,25 +1,20 @@
-package com.camel.example;
+package com.camel.producer;
 
 import org.apache.camel.LoggingLevel;
-import org.apache.camel.Produce;
-import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class TimerRoute extends RouteBuilder {
-
-    @Produce("direct:simpleRoute")
-    ProducerTemplate producerTemplate;
 
     @Override
     public void configure() throws Exception {
 
         from("{{timeRoute}}")
                 .routeId("timerRoute")
-                .setBody(simple("this is test msg ! ------{{message}}"))
+                .setBody(simple("{{message}}"))
+                .process(new ProduceRoute())
                 .log(LoggingLevel.INFO, "${body}")
-
                 .to("mock:out");
     }
 }
