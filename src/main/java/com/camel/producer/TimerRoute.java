@@ -10,6 +10,8 @@ public class TimerRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
+        onException(RuntimeException.class).log(LoggingLevel.WARN, "Exception in Bean caught here");
+
         from("{{timeRoute}}")
                 .routeId("timerRoute")
                 .setBody(simple("{{message}}"))

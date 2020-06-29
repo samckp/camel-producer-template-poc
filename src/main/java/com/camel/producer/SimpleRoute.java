@@ -10,6 +10,8 @@ public class SimpleRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
+        onException(RuntimeException.class).log(LoggingLevel.WARN, "Exception in Bean caught here");
+        
         from("direct:simpleRoute")
                 .routeId("simpleRoute")
                 .log(LoggingLevel.INFO, "body >>>> ${body}")
